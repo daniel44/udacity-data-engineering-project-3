@@ -52,7 +52,24 @@ The ETL script is executed through the etl.py file
 The following queries were conducted for Data Quality purposes:
 
 #of rows in each table
+
+select tab.table_schema,
+       tab.table_name,
+       tinf.tbl_rows as rows
+from svv_tables tab
+join svv_table_info tinf
+          on tab.table_schema = tinf.schema
+          and tab.table_name = tinf.table
+where tab.table_type = 'BASE TABLE'
+      and tab.table_schema not in('pg_catalog','information_schema','pg_internal')
+order by tinf.tbl_rows desc;
+
 ![numberrows](/number_rows.png)
 
 Top 10 rows in the fact table
+
+select *
+from songplays
+limit 10;
+
 ![Facttable](/fact.png)
