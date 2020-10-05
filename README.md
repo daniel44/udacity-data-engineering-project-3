@@ -53,6 +53,7 @@ The following queries were conducted for Data Quality purposes:
 
 #of rows in each table
 
+```sql
 select tab.table_schema,
        tab.table_name,
        tinf.tbl_rows as rows
@@ -63,13 +64,15 @@ join svv_table_info tinf
 where tab.table_type = 'BASE TABLE'
       and tab.table_schema not in('pg_catalog','information_schema','pg_internal')
 order by tinf.tbl_rows desc;
+```
 
 ![numberrows](/number_rows.png)
 
 Top 10 rows in the fact table
-
+```sql
 select *
 from songplays
 limit 10;
+```
 
 ![Facttable](/fact.png)
